@@ -1,0 +1,48 @@
+package com.ismael.Bibliotuca.entity;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "Biblioteca")
+public class Biblioteca {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull
+    private String nombre;
+
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.ALL)
+    private Set<Libro> libros = new HashSet<>();
+
+    public Biblioteca() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Set<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(Set<Libro> libros) {
+        this.libros = libros;
+    }
+}
